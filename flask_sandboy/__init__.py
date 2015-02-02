@@ -27,13 +27,14 @@ class Sandboy(object):
         self.blueprint = None
         self.url_prefix = url_prefix
         self.readonly = readonly
+        self.extension_name = extension_name
         self.init_app(app, models)
 
     def init_app(self, app, models):
         """Initialize and register error handlers."""
 
         # pylint: disable=unused-variable
-        self.blueprint = Blueprint(extension_name, __name__, url_prefix=self.url_prefix)
+        self.blueprint = Blueprint(self.extension_name, __name__, url_prefix=self.url_prefix)
 
         @self.blueprint.errorhandler(BadRequestException)
         @self.blueprint.errorhandler(ForbiddenException)
